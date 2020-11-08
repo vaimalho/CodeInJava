@@ -1,5 +1,6 @@
 // Finds the minimum element and place it at it's apt position
 // It is an in-place sorting
+// It is not a stable sort
 
 // Time Complexity : O(n^2)
 // Space Complexity : O(1)
@@ -36,7 +37,7 @@ public class SelectionSortMain {
 	}
 	
 	public static void selectionSort(int[] arr) {
-		
+
 		int n=arr.length;
 		int min;
 		for(int i=0;i<n-1;i++) {
@@ -45,24 +46,11 @@ public class SelectionSortMain {
 				if(arr[j]<arr[min])
 					min=j;
 			}
-			int temp = arr[min];
-			arr[min] = arr[i];
-			arr[i] = temp;
-		}
-	}
-	
-	public static void selectionSort1(int[] arr) {
-		
-		int min=0;
-		for(int i=0;i<arr.length;i++) {
-			min=i;
-			for(int j=i+1;j<arr.length;j++) {
-				if(arr[j]<arr[min])
-					min=j;
+			if(min!=i){
+				int temp = arr[min];
+				arr[min] = arr[i];
+				arr[i] = temp;
 			}
-			int temp=arr[i];
-			arr[i]=arr[min];
-			arr[min]=temp;
 		}
 	}
 }
