@@ -27,8 +27,12 @@ public class ClimbingStairsMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int N = 4;
+		System.out.println(noOfWays(N));
+		
 		int[] memoize = new int[N+1];
-		System.out.println(noOfWays(memoize,N));
+		System.out.println(noOfWays_TopDown(memoize,N));
+		
+		System.out.println(noOfWays_BottomUp(N));
 
 	}
 	
@@ -36,20 +40,38 @@ public class ClimbingStairsMain {
 	// Time Complexity: O(2^N)
 	
 	public static int noOfWays(int N) {
-		if(N<=1)
-			return 1;
+		if(N<1)
+			return -1;
+		if(N<3)
+			return N;
 		return noOfWays(N-1) + noOfWays(N-2);
 	}
 	
 	// Using Dynamic Programming i.e. Recurssion + Memoization
 	// Time Complexity: O(N)
-	
-	public static int noOfWays(int[] memoize, int n) {
-		if(n<=1)
-			return 1;
+	// Top Down Approach
+	public static int noOfWays_TopDown(int[] memoize, int n) {
+		if(n<1)
+			return -1;
+		if(n<3)
+			return n;
 		if(memoize[n]==0) {
-			memoize[n] = noOfWays(memoize,n-1) + noOfWays(memoize,n-2);
+			memoize[n] = noOfWays_TopDown(memoize,n-1) + noOfWays_TopDown(memoize,n-2);
 		}
 		return memoize[n];
+	}
+	
+	// Using Dynamic Programming i.e. Recurssion + Memoization
+	// Time Complexity: O(N)
+	// Bottom Up Approach
+	public static int noOfWays_BottomUp(int n) {
+		int[] dp = new int[n+1];
+		dp[1]=1;
+		dp[2]=2;
+		
+		for(int i=3; i<=n; i++) {
+			dp[i] = dp[i-1] + dp[i-2];
+		}
+		return dp[n];
 	}
 }
