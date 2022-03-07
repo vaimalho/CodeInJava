@@ -57,14 +57,17 @@ public class DetectLoopInLinkedList {
 	// Time Comlexity: O(n)
 	// Space Complexity: O(n)
 	public static boolean hasCycle(ListNode head) {
-		Set<ListNode> set = new HashSet<ListNode>();
-		while(head!=null) {
-			if(set.contains(head))
-				return true;
-			set.add(head);
-			head=head.next;
-		}
-		return false;
+	    ListNode curr = head;
+	    HashSet<ListNode> hs = new HashSet<ListNode>();
+	    
+	    while (curr != null) {
+		if (hs.contains(curr))
+		    return true;
+
+		hs.add(curr);
+		curr = curr.next;
+	    }
+	    return false;
 	}
 	
 	// Approach 2
