@@ -57,14 +57,17 @@ public class LinkedListCycleNode {
 	// Approach 1
 	// Space Complexity: O(N)
 	public static ListNode detectCycleNode(ListNode head) {
-		Set<ListNode> set = new HashSet<ListNode>();
-		while(head!=null) {
-			if(set.contains(head))
-				return head;
-			set.add(head);
-			head=head.next;
-		}
-		return null;
+	    ListNode curr = head;
+	    HashSet<ListNode> hs = new HashSet<ListNode>();
+	    
+	    while (curr != null) {
+		if (hs.contains(curr))
+		    return curr;
+
+		hs.add(curr);
+		curr = curr.next;
+	    }
+	    return null;
 	}
 	
 	// Approach 2 // Recommended
