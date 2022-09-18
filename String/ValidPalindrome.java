@@ -65,6 +65,8 @@ public class ValidPalindrome {
     // Space Complexity: O(N)
     public static boolean isPalindrome1(String s) {
 
+        if(s.length()<=1)
+            return true;
         s = s.trim();
         s = s.toLowerCase();
 
