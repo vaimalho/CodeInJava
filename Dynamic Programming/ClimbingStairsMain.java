@@ -74,4 +74,24 @@ public class ClimbingStairsMain {
 		}
 		return dp[n];
 	}
+	
+    // Time Complexity: O(N)
+    // Space Complexity: O(1)
+    public static int climbStairs1(int n) {
+
+        if(n<=0)
+            return 0;
+        if(n==1)
+            return 1;
+
+        int first = 1;
+        int second = 2;
+
+        for(int i=3;i<=n;i++){
+            int third = first + second;
+            first = second;
+            second = third;
+        }
+        return second;
+    }
 }
