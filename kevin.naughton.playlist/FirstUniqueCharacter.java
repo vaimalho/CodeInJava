@@ -25,11 +25,12 @@ public class FirstUniqueCharacter {
 
 	}
 	
+	// Time Complexity: O(N)
+	// Space Complexity: O(1) --> Only 26 lower case Alphabets i.e 0<=N<=26
 	public static int firstUniqChar(String s) {
 		if(s.length()==0)
 			return -1;
 		Map<Character,Integer> map = new HashMap<Character,Integer>();
-		int result=0;
 		for(char ch : s.toCharArray()) {
 			map.put(ch, map.getOrDefault(ch, 0) + 1);
 		}
