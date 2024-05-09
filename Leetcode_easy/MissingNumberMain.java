@@ -26,59 +26,59 @@ import java.util.*;
 
 public class MissingNumberMain {
 
-    public static void main(String[] args) {
+       public static void main(String[] args) {
 
-        int[] arr = new int[] {9,6,4,2,3,5,7,0,1};
-        System.out.println(missingNumber(arr));
-
+        int[] nums = new int[] {9,6,4,2,3,5,7,0,1};
+        //int[] nums = new int[] {3,0,1};
+        //int[] nums = new int[] {0,1};
+        System.out.println(missingNumber_optimized2(nums));
     }
 
-    // Time Complexity: O(NlogN)
+    // Time Complexity: O(N)
     // Space Complexity: O(1)
     public static int missingNumber(int[] nums) {
 
+        if(nums.length==0)
+            return -1;
+
         Arrays.sort(nums);
-        int count=0;
         for(int i=0; i<nums.length; i++){
-            if(count!=nums[i])
-                return i;
-            count++;
-        }
-        return nums.length;;
-    }
-
-    // Time Complexity: O(N)
-    // Space Complexity: O(N)
-    public static int missingNumber1(int[] nums) {
-
-        Set<Integer> set = new HashSet<>();
-
-        for(int i : nums)
-            set.add(i);
-
-        for(int i=0;i<nums.length; i++){
-            if(!set.contains(i))
+            if(i != nums[i])
                 return i;
         }
-
         return nums.length;
-
     }
 
     // Time Complexity: O(N)
-    // SPace Complexity: O(1)
-    public static int missingNumber2(int[] nums) {
+    // Space Complexity: O(1)
+    public static int missingNumber_optimized(int[] nums) {
 
-        int n=nums.length;
-        int sum=0;
+        int arrSize = nums.length;
+        int result=0;
+        if(arrSize==0)
+            return -1;
 
-        int expectedSum = n*(n+1)/2;
+        int sum= arrSize*(arrSize+1)/2;
 
-        for(int i : nums){
-            sum += i;
+        for(int i=0; i<arrSize; i++){
+            result += nums[i];
+        }
+        return sum-result;
+    }
+
+    // Time Complexity: O(N)
+    // Space Complexity: O(1)
+    public static int missingNumber_optimized2(int[] nums) {
+
+        int arrSize = nums.length;
+        int result = 0;
+        if(arrSize==0)
+            return -1;
+
+        for(int i=0; i<arrSize; i++){
+            result ^= i ^ nums[i];
         }
 
-        return expectedSum - sum;
-
+        return result^arrSize;
     }
 }
