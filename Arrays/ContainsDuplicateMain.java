@@ -54,5 +54,19 @@ public class ContainsDuplicateMain {
         return false;
     }
 
+    // Time COmplexity: O(N)
+    // Space COmplexity: O(N)
+    public static boolean containsDuplicate2(int[] nums) {
+
+        Set<Integer> set = new HashSet<>();
+
+        for(int i:nums){
+            if(set.contains(i))
+                return true;
+            set.add(i);
+        }
+        return false;
+    }
+
 
 }
