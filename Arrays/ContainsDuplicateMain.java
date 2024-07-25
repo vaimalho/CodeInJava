@@ -58,7 +58,8 @@ public class ContainsDuplicateMain {
     // Space COmplexity: O(N)
     public static boolean containsDuplicate2(int[] nums) {
 
-        Set<Integer> set = new HashSet<>();
+       // Set<Integer> set = new HashSet<>();
+        Set<Integer> set = null;
 
         for(int i:nums){
             if(set.contains(i))
