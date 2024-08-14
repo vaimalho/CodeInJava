@@ -12,6 +12,8 @@ Input: nums = [1,1,1,3,3,4,3,2,4,2]
 Output: true
 */
 
+
+
 package arrays;
 
 import java.util.Arrays;
@@ -43,6 +45,21 @@ public class ContainsDuplicateMain {
     public static boolean containsDuplicate1(int[] nums) {
 
         Set<Integer> set = new HashSet<>();
+
+        for(int i:nums){
+            if(set.contains(i))
+                return true;
+            set.add(i);
+        }
+        return false;
+    }
+
+    // Time COmplexity: O(N)
+    // Space COmplexity: O(N)
+    public static boolean containsDuplicate2(int[] nums) {
+
+       // Set<Integer> set = new HashSet<>();
+        Set<Integer> set = null;
 
         for(int i:nums){
             if(set.contains(i))
